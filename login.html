@@ -1,0 +1,290 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Pley - Login</title>
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="bootstrap.min.css" />
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+<!-- Optional theme -->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://heartcode-canvasloader.googlecode.com/files/heartcode-canvasloader-min-0.9.1.js"></script>
+<script src="https://cdn.rawgit.com/nnattawat/flip/v1.0.16/dist/jquery.flip.min.js"></script>
+
+<style type="text/css">
+.vertical-center {
+  min-height: 90%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 90vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  
+  max-width: 750px;
+}
+</style>
+
+</head>
+
+<body style="background-image:url(Lego.jpg)">
+    <!-- Header -->
+    <nav class="navbar navbar-default">
+    	<div class="container-fluid">
+        	<div class="navbar-header">
+            	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-top" aria-expanded="false">
+                	<span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="https://www.pley.com/"><img src="https://www.pley.com/images/logo-v3.png" alt="Pley" class="img-responsive" style="width: 80px; margin-top: 5px;" /></a>
+        	</div>
+            
+            <div class="collapse navbar-collapse" id="navbar-top">
+            	<ul class="nav navbar-nav navbar-right">
+                	<li><a href="https://www.pley.com/login">Login</a></li>
+                    <li class="active"><a href="#">Register</a></li>
+                </ul>
+        	</div>
+        </div>
+    </nav>
+    
+    <div class="vertical-center">
+        <div class="container" id="container">
+            <div class="panel panel-default" style="background-color:hsla(0,0%,95%,0.9); opacity:0" id="main">
+                <div class="panel-body">
+                	<div id="main-body">
+                        <h2>Let's start!</h2>
+                        <br/>
+                        <div id="error" style="display:none;">
+                            <div class="alert alert-danger" style="padding:4px;">
+                                <p>Please correct the following errors before continuing:</p>
+                                <ul id="errorList">
+                                </ul>
+                            </div>
+                            <br/>
+                        </div>
+                        
+                        <form action="#" id="signup-form">
+                            <div class="form-group" id="fgName">
+                                <label for="name">Full Name</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Full Name" />
+                                <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                <span id="inputErrorNameStatus" class="sr-only">(error)</span>
+                            </div>
+                            
+                            <div class="form-group" id="fgEmail">
+                                <label for="email">Email Address</label>
+                                <input type="text" name="email" id="email" class="form-control" placeholder="Email" />
+                                <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                <span id="inputErrorEmailStatus" class="sr-only">(error)</span>
+                            </div>
+                            
+                            <div class="form-group" id="fgPsw">
+                                <label for="psw">Password</label>
+                                <input type="password" name="psw" id="psw" class="form-control" placeholder="Password" />
+                                <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                <span id="inputErrorPswStatus" class="sr-only">(error)</span>
+                            </div>
+                            
+                            <div class="form-group" id="fgPsw2">
+                                <label for="psw2">Retype Password</label>
+                                <input type="password" id="psw2" class="form-control" placeholder="Password" />
+                                <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                <span id="inputErrorPsw2Status" class="sr-only">(error)</span>
+                            </div>
+                            <br/>
+                            
+                            <div class="form-group" id="fgHP">
+                                <input type="text" id="HP" class="form-control" placeholder="Don't type anything here." />
+                            </div>
+                            
+                            <div class="help-block">
+                            <h4>Where exactly does my data go?</h4>
+                            We will not sell, rent, or exploit your data for marketing purposes. To find out more, take a moment to review our <a href="#">privacy policy</a>.
+                            </div>
+                            <br/>
+                            <div class="form-group" id="fgTos">
+                                <label for="tos"><input type="checkbox" id="tos" />
+                                I Agree to our <a href="https://www.pley.com/terms-and-conditions" target="_blank">Terms of Service</a>.</label>
+                            </div>
+                            <div id="canvasloader-container" class="text-center" style="display:none;"></div>
+                            <br/>
+                            <button class="btn btn-primary center-block" id="go_btn" onClick="go_click(); return false;">Let's Go!</button>
+                        </form>
+                	</div>
+                    <div class="text-center" id="completed" style="display: none;">
+                    	<h2>Thank you for registering!</h2>
+                    	<p>We will send you an email* within the next 24 hours. Please check your mailbox to verify your email.</p>
+                        <p>Once you have successfully verified your email address,<br/>you will be asked to enter your billing and credit card info before being able to use Pley.<br/>
+                        Welcome to our Pleyground!
+                        </p>
+                        <br/>
+                        <a href="http://www.pley.com/" class="btn btn-primary">Return to Pley</a>
+                        <div class="help-block">*For purposes of this demenstration, an email has <i>not</i> actually been sent. 
+                    </div>
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+    </div>
+    
+    <script type="text/javascript">
+		
+		$("#fgHP").css("display", "none");
+		
+		// This is the loading screen
+		var cl = new CanvasLoader('canvasloader-container');
+		cl.setColor('#66c8cd'); // default is '#000000'
+		cl.setDiameter(40); // default is 40
+		cl.setDensity(57); // default is 40
+		cl.setRange(0.5); // default is 1.3
+		cl.setFPS(34); // default is 24
+		cl.show();
+		
+		/*
+		var loaderObj = document.getElementById("canvasLoader-container");
+  		loaderObj.style["position"] = "absolute";
+  		loaderObj.style["top"] = cl.getDiameter() * -0.8 + "px";
+  		loaderObj.style["left"] = cl.getDiameter() * -0.8 + "px";
+		*/
+		
+		// Opening animation
+		$("#main").animate({
+			opacity: 0.9,
+			left: "+=500"
+		}, 600, function() { });
+		
+		
+		function go_click() {
+			validate();
+			
+			if (isValid) {
+			$("#canvasloader-container").show(400);
+			
+				// Upload to server
+				$.ajax({
+					type: "POST",
+					url: "http://stratsofttech.azurewebsites.net/pley/register.php",
+					data: {
+						action: "register",
+						name: $("#name").val(),
+						email: $("#email").val()
+					},
+					success: function(data) {
+						if(data.success) {
+							$("#main-body").hide(350);
+							$("#completed").show(450);
+							$("#error").hide(500);
+						} else {
+							$("#errorList").append("<li>" + data.error + "</li>");
+							$("#error").show();
+						}
+						$("#canvasloader-container").hide(400);
+					},
+					dataType: "json"
+				});
+				
+			} else {
+				$("#error").show(500);
+			}
+			
+			$("#go_btn").removeAttr("disabled");
+			
+			return false;
+		}
+		
+		
+		var isValid = false;
+		function validate() {
+			
+			$("#go_btn").attr("disabled", "disabled");
+			
+			isValid = true;
+			
+			// Clear the list of errors
+			$("#errorList").html("");
+			
+			// First and foremost, check to see if this is a computer or a human
+			if ($("#HP").val().length != 0) {
+				set("#fgName", true, "Unfortunately you have been detected as a bot. Please contact support if you are truly human!");	
+			}
+			
+			// FIRST VALIDATE THE NAME
+			// Ensure there are enough characters
+			if ($("#name").val().length <= 5) {
+				setClass("#fgName", true, "Enter your full first and last name.");
+			} else if ($("#name").val().indexOf(' ', 0) < 0) {
+				setClass("#fgName", true, "Please enter your entire first <i>and</i> last name.");
+			} else {
+				setClass("#fgName", false);
+			}
+			
+			// VALIDATE EMAIL ADDRESS
+			var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+			if ($("#email").val().length <= 3) {
+				setClass("#fgEmail", true, "Email cannot be blank.");
+			} else if (!testEmail.test($("#email").val())) {
+				setClass("#fgEmail", true, "Please enter a valid email address.");
+			} else {
+				setClass("#fgEmail", false);
+			}
+			
+			// CHECK PASSWORD AND PASSWORD CHECK
+			if ($("#psw").val().length < 6) {
+				setClass("#fgPsw", true, "Password must be at least 6 characters.");
+			} else {
+				setClass("#fgPsw", false);
+			}
+			
+			
+			if ($("#psw2").val() != $("#psw").val()) {
+				setClass("#fgPsw2", true, "Passwords do not match.");
+				$("#psw2").val("");
+			} else {
+				setClass("#fgPsw2", false);
+			}
+			
+			// CHECK TERMS OF SERVICE
+			if (!$("#tos").prop("checked")) {
+				setClass("#fgTos", true, "You must accept our Terms of Service to continue");
+			} else {
+				setClass("#fgTos", false);
+			}
+					
+		}
+		
+		function setClass(divError, showError, errorText) {
+			
+			if (showError) {
+				isValid = false;
+				$("#errorList").append("<li>" + errorText + "</li>");
+				if (!$(divError).hasClass('has-error')) {
+					$(divError).addClass('has-error');
+					$(divError).addClass('has-feedback');
+				}
+			} else {
+				if ($(divError).hasClass('has-error')) {
+					$(divError).removeClass('has-error');
+					$(divError).removeClass('has-feedback');
+				}
+			}
+		}
+		
+		
+		
+		
+    </script>
+</body>
+</html>
